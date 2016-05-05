@@ -8,12 +8,12 @@ var moduleFirstDemo;
                 this.$resource = $resource;
             }
             DataProductService.prototype.getResource = function () {
-                return this.$resource("http://localhost:3000/products/", {}, {
+                return this.$resource("http://192.168.0.147:3000/products/", {}, {
                     query: { method: "GET", isArray: true },
-                    get: { method: "GET", url: "http://localhost:3000/products/:id" },
-                    remove: { method: "DELETE", url: "http://localhost:3000/products/:id" },
-                    save: { method: "POST", url: "http://localhost:3000/products/" },
-                    update: { method: 'PUT', url: "http://localhost:3000/products/:id" }
+                    get: { method: "GET", url: "http://192.168.0.147:3000/products/:id" },
+                    remove: { method: "DELETE", url: "http://192.168.0.147:3000/products/:id" },
+                    save: { method: "POST", url: "http://192.168.0.147:3000/products/" },
+                    update: { method: 'PUT', url: "http://192.168.0.147:3000/products/:id" }
                 });
             };
             DataProductService.$inject = ['$resource'];

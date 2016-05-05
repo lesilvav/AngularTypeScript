@@ -4,7 +4,7 @@
        <button class="btn btn-success"
                             data-toggle="modal" 
                             data-target="#myModal2"
-                            ng-click="vm.editOrUpdate=1;vm.currentProduct=[]""
+                            ng-click="vm.editOrUpdate=1;vm.currentProduct={}"
                            >add</button>
     </div>
 
@@ -97,10 +97,10 @@
             <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
         </div>
         <div class="modal-body">
-            
+      <form ng-submit="vm.productCreate(vm.currentProduct)" >      
             <div class="form-group">
     <label for="Id">Id</label>
-    <input ng-model="vm.currentProduct.id" type="text" class="form-control" id="Id" placeholder="Id">
+    <input ng-model="vm.currentProduct.id" type="text" class="form-control" id="Id" placeholder="Id" required>
   </div>
   
        <div class="form-group">
@@ -132,12 +132,13 @@
     <label for="Img_Url">Img Url</label>
     <input ng-model="vm.currentProduct.imageUrl" type="text" class="form-control" id="Img_Url" placeholder="Img Url">
   </div>
-            
+                       <button class="btn btn-success" ng-show="vm.editOrUpdate!=0" >Save</button>
+                                   <button class="btn btn-success" ng-click="vm.productUpdate(vm.currentProduct)" ng-show="vm.editOrUpdate==0" data-dismiss="modal">Update</button>
+
+</form> 
         </div>
          
         <div class="modal-footer">
-            <button class="btn btn-success" ng-click="vm.productCreate(vm.currentProduct)" ng-show="vm.editOrUpdate!=0" data-dismiss="modal">Save</button>
-            <button class="btn btn-success" ng-click="vm.productUpdate(vm.currentProduct)" ng-show="vm.editOrUpdate==0" data-dismiss="modal">Update</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         </div>

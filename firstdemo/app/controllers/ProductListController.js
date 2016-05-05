@@ -24,10 +24,20 @@ var moduleFirstDemo;
         };
         ProductListController.prototype.productCreate = function (product) {
             var _this = this;
-            this.dataProductResource.getResource().save(product, function (data) {
-                _this.currentProduct = [];
-                _this.products.push(product);
-            });
+            var exist;
+            exist = false;
+            for (var index = 0; index < this.products.length; index++) {
+                if (this.products[index].id == product.id) {
+                    alert("id exist");
+                    exist = true;
+                }
+            }
+            if (!exist) {
+                this.dataProductResource.getResource().save(product, function (data) {
+                    _this.currentProduct = [];
+                    _this.products.push(product);
+                });
+            }
         };
         ProductListController.prototype.productUpdate = function (product) {
             var _this = this;

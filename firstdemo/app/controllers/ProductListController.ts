@@ -39,10 +39,23 @@ namespace moduleFirstDemo {
         }
         
          productCreate(product:moduleFirstDemo.domain.IProduct):void{
-           this.dataProductResource.getResource().save(product, (data:moduleFirstDemo.domain.IProduct)=>{
-               this.currentProduct=[]
-                this.products.push(product);
-            })
+             var exist:boolean;
+             exist=false;
+           for (var index = 0; index < this.products.length; index++) {
+                        if(this.products[index].id==product.id){
+                            alert("id exist")
+                           exist=true;
+                        }
+                    }
+               
+              if(!exist){
+                    this.dataProductResource.getResource().save(product, (data:moduleFirstDemo.domain.IProduct)=>{
+                            this.currentProduct=[]
+                                this.products.push(product);
+                                })
+              }
+           
+                  
         }
         
          productUpdate(product:moduleFirstDemo.domain.IProduct):void{

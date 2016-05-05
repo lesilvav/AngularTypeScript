@@ -8,11 +8,7 @@ namespace moduleFirstDemo.common {
 		extends ng.resource.IResource<moduleFirstDemo.domain.IProduct> {
 
 	}
-    
-    interface IProductResourceUpdate extends ng.resource.IResourceClass<moduleFirstDemo.domain.IProduct>
-    {
-        update(IEmployee) : moduleFirstDemo.domain.IProduct;
-    }
+  
     export class DataProductService implements IDataProductService {
         
         static $inject: Array<string> = ['$resource'];
