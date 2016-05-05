@@ -1,0 +1,163 @@
+<div class="panel panel-primary" >
+    <div class="panel-heading"
+         style="font-size:large">{{::vm.title}}
+       <button class="btn btn-success"
+                            data-toggle="modal" 
+                            data-target="#myModal2"
+                            ng-click="vm.editOrUpdate=1;vm.currentProduct=[]""
+                           >add</button>
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+
+            <thead>
+            <tr>
+                <td>
+                    <button type="button"
+                            class="btn btn-primary"
+                            ng-click="vm.toggleImage()">
+                        {{vm.showImage ? "Hide" : "Show"}} Image
+                    </button>
+                </td>
+                <td>Product</td>
+                <td>Code</td>
+                <td>Available</td>
+                <td>Price</td>
+                <td>Detalle</td>
+                <td>Editar</td>
+                <td>Eliminar</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in vm.products track by $index">
+                <td>
+                    <img ng-if="vm.showImage"
+                         ng-src="{{product.imageUrl}}"
+                         style="width:50px;margin:2px"
+                         title="{{product.productName}}">
+                </td>
+                <td>{{ product.productName}} </td>
+                <td>{{ product.productCode }}</td>
+                <td>{{ product.releaseDate | date }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td><button class="btn btn-success"
+                            data-toggle="modal" 
+                            data-target="#myModal"
+                            
+                            ng-click="vm.currentProduct = product">Detalle</button></td>
+                <td><button class="btn btn-success"
+                            data-toggle="modal" 
+                            data-target="#myModal2"
+                  ng-click="vm.currentProduct = product;vm.editOrUpdate=0">Editar</button></td>
+                  
+                    <td><button class="btn btn-success"
+                            data-toggle="modal" 
+                            data-target="#myModal3"
+                  ng-click="vm.productRemove(product.id)">Eliminar</button></td>
+                            
+            </tr>
+            </tbody>
+        </table>
+    </div>
+      <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Producto</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img class="img-responsive"
+                        ng-src="{{ vm.currentProduct.imageUrl}}" alt="">
+                </div>
+                <div class="col-sm-8">
+                    <p><b>Name: </b>{{ vm.currentProduct.productName }}</p>
+                    <p><b>Code: </b>{{ vm.currentProduct.productCode }}</p>
+                    <p><b>Price: </b>: {{ vm.currentProduct.price }}</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+        </div>
+        <div class="modal-body">
+            
+            <div class="form-group">
+    <label for="Id">Id</label>
+    <input ng-model="vm.currentProduct.id" type="text" class="form-control" id="Id" placeholder="Id">
+  </div>
+  
+       <div class="form-group">
+    <label for="Name">Name</label>
+    <input ng-model="vm.currentProduct.productName" type="text" class="form-control" id="Name" placeholder="Name">
+  </div>
+  
+   <div class="form-group">
+    <label for="Code">Code</label>
+    <input ng-model="vm.currentProduct.productCode" type="text" class="form-control" id="CodeName" placeholder="Code">
+  </div>
+  
+       <div class="form-group">
+    <label for="Date">Date</label>
+    <input ng-model="vm.currentProduct.releaseDate" type="date" class="form-control" id="Date" placeholder="Date">
+  </div>
+  
+     <div class="form-group">
+    <label for="Description">Description</label>
+    <input ng-model="vm.currentProduct.description" type="text" class="form-control" id="Description" placeholder="Description">
+  </div>
+  
+     <div class="form-group">
+    <label for="Price">Price</label>
+    <input ng-model="vm.currentProduct.price" type="text" class="form-control" id="Price" placeholder="Price">
+  </div>
+  
+     <div class="form-group">
+    <label for="Img_Url">Img Url</label>
+    <input ng-model="vm.currentProduct.imageUrl" type="text" class="form-control" id="Img_Url" placeholder="Img Url">
+  </div>
+            
+        </div>
+         
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="vm.productCreate(vm.currentProduct)" ng-show="vm.editOrUpdate!=0" data-dismiss="modal">Save</button>
+            <button class="btn btn-success" ng-click="vm.productUpdate(vm.currentProduct)" ng-show="vm.editOrUpdate==0" data-dismiss="modal">Update</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+       <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Producto Eliminado</h4>
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+    
+</div>

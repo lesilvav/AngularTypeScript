@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 42342355435,
+      "productName": "cxbcvbcvbcv",
+      "productCode": 312,
+      "description": "dasdasd",
+      "price": 312312
+    },
+    {
+      "id": 23423423,
+      "productName": "sadasd",
+      "productCode": 32423423,
+      "description": "dasdasd",
+      "price": 312312
+    },
+    {
+      "id": 3453478687,
+      "productName": "gdfgdfgdf",
+      "productCode": 867867,
+      "description": "dasdasd",
+      "price": 312312
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
